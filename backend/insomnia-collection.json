@@ -1,0 +1,591 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2025-08-18T22:30:00.000Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_auth_register",
+      "parentId": "fld_auth",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/auth/register",
+      "name": "Register User",
+      "description": "Register a new user account",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"name\": \"Eduardo Olimpio\",\n  \"description\": \"Senior developer with 5 years experience\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1692393600000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_auth_login",
+      "parentId": "fld_auth",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/auth/login",
+      "name": "Login User",
+      "description": "Login with email and password",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1692393500000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_profile",
+      "parentId": "fld_users",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/users/profile",
+      "name": "Get User Profile",
+      "description": "Get current user profile information",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692393400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_update_profile",
+      "parentId": "fld_users",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/users/profile",
+      "name": "Update User Profile",
+      "description": "Update current user profile information",
+      "method": "PATCH",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"name\": \"Eduardo Olimpio Updated\",\n  \"description\": \"Updated description with new experience\"\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692393300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_upload_image",
+      "parentId": "fld_users",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/users/profile/image",
+      "name": "Upload Profile Image",
+      "description": "Upload profile image for current user",
+      "method": "POST",
+      "body": {
+        "mimeType": "multipart/form-data",
+        "params": [
+          {
+            "name": "file",
+            "value": "",
+            "description": "Profile image file (JPEG, PNG, GIF - max 5MB)",
+            "type": "file"
+          }
+        ]
+      },
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692393200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_users_all",
+      "parentId": "fld_users",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/users",
+      "name": "Get All Users",
+      "description": "Get all active users (admin endpoint)",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692393100000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_crypto_all",
+      "parentId": "fld_crypto",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cryptocurrencies",
+      "name": "Get All Cryptocurrencies",
+      "description": "Get all cryptocurrencies with optional filters",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "10",
+          "description": "Number of results to return"
+        },
+        {
+          "name": "offset",
+          "value": "0",
+          "description": "Number of results to skip"
+        },
+        {
+          "name": "name",
+          "value": "",
+          "description": "Filter by cryptocurrency name"
+        },
+        {
+          "name": "symbol",
+          "value": "",
+          "description": "Filter by cryptocurrency symbol"
+        },
+        {
+          "name": "type",
+          "value": "",
+          "description": "Filter by cryptocurrency type"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692393000000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_crypto_top",
+      "parentId": "fld_crypto",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cryptocurrencies/top",
+      "name": "Get Top Cryptocurrencies",
+      "description": "Get top cryptocurrencies by market cap",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "10",
+          "description": "Number of top cryptocurrencies to return"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392900000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_crypto_search",
+      "parentId": "fld_crypto",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cryptocurrencies/search",
+      "name": "Search Cryptocurrencies",
+      "description": "Search cryptocurrencies by name or symbol",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "q",
+          "value": "bitcoin",
+          "description": "Search term (name or symbol)"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392800000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_crypto_by_id",
+      "parentId": "fld_crypto",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cryptocurrencies/btc-bitcoin",
+      "name": "Get Cryptocurrency by ID",
+      "description": "Get specific cryptocurrency details by ID",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392700000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_crypto_clear_cache",
+      "parentId": "fld_crypto",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cryptocurrencies/cache",
+      "name": "Clear Cryptocurrency Cache",
+      "description": "Clear the cryptocurrency data cache",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392600000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cache_test_performance",
+      "parentId": "fld_cache_test",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cache-test/crypto-performance",
+      "name": "Test Cache Performance",
+      "description": "Test cryptocurrency cache performance - shows cache hit/miss timing",
+      "method": "GET",
+      "body": {},
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "10",
+          "description": "Number of cryptocurrencies to fetch"
+        }
+      ],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392500000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cache_test_comparison",
+      "parentId": "fld_cache_test",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cache-test/performance-comparison",
+      "name": "Performance Comparison (Auto)",
+      "description": "Automatic performance test: clears cache, makes 2 calls, shows improvement",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392400000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cache_test_info",
+      "parentId": "fld_cache_test",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cache-test/cache-info",
+      "name": "Cache Info",
+      "description": "Get Redis cache information and stored keys",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392300000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cache_test_clear",
+      "parentId": "fld_cache_test",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "url": "{{ _.baseUrl }}/cache-test/clear-cache",
+      "name": "Clear All Cache",
+      "description": "Clear all Redis cache - use to force cache misses",
+      "method": "DELETE",
+      "body": {},
+      "parameters": [],
+      "headers": [],
+      "authentication": {
+        "type": "bearer",
+        "token": "{{ _.authToken }}"
+      },
+      "metaSortKey": -1692392200000,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "fld_cache_test",
+      "parentId": "wrk_erictel",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "🚀 Redis Cache Testing",
+      "description": "Redis cache performance testing endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1692393300000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_auth",
+      "parentId": "wrk_erictel",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Authentication",
+      "description": "User authentication endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1692393600000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_users",
+      "parentId": "wrk_erictel",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Users",
+      "description": "User management endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1692393500000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "fld_crypto",
+      "parentId": "wrk_erictel",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Cryptocurrencies",
+      "description": "Cryptocurrency data endpoints",
+      "environment": {},
+      "environmentPropertyOrder": null,
+      "metaSortKey": -1692393350000,
+      "_type": "request_group"
+    },
+    {
+      "_id": "wrk_erictel",
+      "parentId": null,
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Erictel API",
+      "description": "Complete API collection for Erictel Backend",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_base",
+      "parentId": "wrk_erictel",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Base Environment",
+      "data": {
+        "baseUrl": "http://localhost:3000/api/v1",
+        "authToken": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl",
+          "authToken"
+        ]
+      },
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1692393600000,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_dev",
+      "parentId": "env_base",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Development",
+      "data": {
+        "baseUrl": "http://localhost:3000/api/v1",
+        "authToken": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl",
+          "authToken"
+        ]
+      },
+      "color": "#7d69cb",
+      "isPrivate": false,
+      "metaSortKey": 1692393600000,
+      "_type": "environment"
+    },
+    {
+      "_id": "env_prod",
+      "parentId": "env_base",
+      "modified": 1692393600000,
+      "created": 1692393600000,
+      "name": "Production",
+      "data": {
+        "baseUrl": "https://your-production-domain.com/api/v1",
+        "authToken": ""
+      },
+      "dataPropertyOrder": {
+        "&": [
+          "baseUrl",
+          "authToken"
+        ]
+      },
+      "color": "#d9534f",
+      "isPrivate": false,
+      "metaSortKey": 1692393700000,
+      "_type": "environment"
+    }
+  ]
+}
