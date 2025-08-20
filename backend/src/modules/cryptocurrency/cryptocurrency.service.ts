@@ -25,8 +25,6 @@ export class CryptocurrencyService {
     
     const cached = await this.cacheManager.get<CryptocurrencyDto[]>(cacheKey);
     if (cached) {
-      const responseTime = Date.now() - startTime;
-      this.logger.log(`🚀 CACHE HIT - Response time: ${responseTime}ms - Key: ${cacheKey}`);
       return cached;
     }
 
@@ -75,12 +73,9 @@ export class CryptocurrencyService {
 
       await this.cacheManager.set(cacheKey, cryptocurrencies, 300000);
       
-      const responseTime = Date.now() - startTime;
-      this.logger.log(`⚡ CACHE MISS - API call completed in ${responseTime}ms - Cached ${cryptocurrencies.length} cryptocurrencies`);
       return cryptocurrencies;
 
     } catch (error) {
-      this.logger.error('Error fetching cryptocurrency data:', error.message);
       throw new Error('Failed to fetch cryptocurrency data');
     }
   }
@@ -90,7 +85,6 @@ export class CryptocurrencyService {
     
     const cached = await this.cacheManager.get<CryptocurrencyDto>(cacheKey);
     if (cached) {
-      this.logger.debug(`Returning cached data for cryptocurrency: ${id}`);
       return cached;
     }
 
@@ -117,11 +111,9 @@ export class CryptocurrencyService {
 
       await this.cacheManager.set(cacheKey, cryptocurrency, 120000);
       
-      this.logger.debug(`Fetched cryptocurrency data for: ${id}`);
       return cryptocurrency;
 
     } catch (error) {
-      this.logger.error(`Error fetching cryptocurrency ${id}:`, error.message);
       throw new Error(`Failed to fetch cryptocurrency data for ${id}`);
     }
   }
@@ -135,7 +127,6 @@ export class CryptocurrencyService {
     
     const cached = await this.cacheManager.get<CryptocurrencyDto[]>(cacheKey);
     if (cached) {
-      this.logger.debug(`Returning cached search results for: ${searchTerm}`);
       return cached;
     }
 
@@ -148,17 +139,14 @@ export class CryptocurrencyService {
 
       await this.cacheManager.set(cacheKey, searchResults, 600000);
       
-      this.logger.debug(`Found ${searchResults.length} cryptocurrencies matching: ${searchTerm}`);
       return searchResults;
 
     } catch (error) {
-      this.logger.error(`Error searching cryptocurrencies for ${searchTerm}:`, error.message);
       throw new Error(`Failed to search cryptocurrencies for ${searchTerm}`);
     }
   }
 
   async clearCache(): Promise<void> {
     await this.cacheManager.reset();
-    this.logger.debug('Cryptocurrency cache cleared');
   }
 }

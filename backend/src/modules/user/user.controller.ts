@@ -13,6 +13,7 @@ import {
   ParseFilePipe,
   MaxFileSizeValidator,
   FileTypeValidator,
+  BadRequestException,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiConsumes } from '@nestjs/swagger';
@@ -97,12 +98,17 @@ export class UserController {
       new ParseFilePipe({
         validators: [
           new MaxFileSizeValidator({ maxSize: 5 * 1024 * 1024 }),
-          new FileTypeValidator({ fileType: /^image\/(jpeg|jpg|png|gif)$/ }),
         ],
       }),
     )
     file: Express.Multer.File,
   ) {
+    const allowedMimeTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+    
+    if (!allowedMimeTypes.includes(file.mimetype)) {
+      throw new BadRequestException(`Tipo de arquivo não suportado: ${file.mimetype}. Tipos permitidos: ${allowedMimeTypes.join(', ')}`);
+    }
+
     const imagePath = `/uploads/profiles/${file.filename}`;
     return this.userService.updateProfileImage(req.user.userId, imagePath);
   }

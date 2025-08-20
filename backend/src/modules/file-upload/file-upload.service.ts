@@ -59,7 +59,6 @@ export class FileUploadService {
       }
       return false;
     } catch (error) {
-      console.error('Error deleting file:', error);
       return false;
     }
   }

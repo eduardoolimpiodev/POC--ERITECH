@@ -1,5 +1,6 @@
-import { Controller, Post, Body, UseGuards, Request } from '@nestjs/common';
-import { ApiTags, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { Controller, Post, Body, UseGuards, Request, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiResponse, ApiConsumes } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { CreateUserDto } from '../user/dto/create-user.dto';
@@ -15,11 +16,15 @@ export class AuthController {
   @ApiOperation({ summary: 'Register a new user' })
   @ApiResponse({ status: 201, description: 'User registered successfully', type: AuthResponseDto })
   @ApiResponse({ status: 409, description: 'User already exists' })
-  async register(@Body() createUserDto: CreateUserDto): Promise<AuthResponseDto> {
-    return this.authService.register(createUserDto);
+  @ApiConsumes('multipart/form-data', 'application/json')
+  @UseInterceptors(FileInterceptor('profileImage'))
+  async register(
+    @Body() createUserDto: CreateUserDto,
+    @UploadedFile() profileImage?: Express.Multer.File
+  ): Promise<AuthResponseDto> {
+    return this.authService.register(createUserDto, profileImage);
   }
 
-  @UseGuards(LocalAuthGuard)
   @Post('login')
   @ApiOperation({ summary: 'Login user' })
   @ApiResponse({ status: 200, description: 'User logged in successfully', type: AuthResponseDto })

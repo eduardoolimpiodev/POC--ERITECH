@@ -27,11 +27,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
       error: exception.getResponse(),
     };
 
-    this.logger.error(
-      `${request.method} ${request.url}`,
-      JSON.stringify(errorResponse),
-      exception.stack,
-    );
 
     response.status(status).json(errorResponse);
   }
@@ -59,11 +54,6 @@ export class AllExceptionsFilter implements ExceptionFilter {
       message: exception instanceof Error ? exception.message : 'Internal server error',
     };
 
-    this.logger.error(
-      `${request.method} ${request.url}`,
-      JSON.stringify(errorResponse),
-      exception instanceof Error ? exception.stack : 'Unknown error',
-    );
 
     response.status(status).json(errorResponse);
   }

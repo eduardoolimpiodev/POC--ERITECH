@@ -9,15 +9,23 @@ async function seedUsers() {
   
   try {
     await client.connect();
-    console.log('Connected to MongoDB');
     
     const db = client.db(DB_NAME);
     const usersCollection = db.collection('users');
     
     await usersCollection.deleteMany({});
-    console.log('Cleared existing users');
     
     const testUsers = [
+      {
+        email: 'user@example.com',
+        password: await bcrypt.hash('password123', 10),
+        name: 'Eduardo Olimpio',
+        description: 'Test user account',
+        profileImage: null,
+        isActive: true,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
       {
         email: 'admin@erictel.com',
         password: await bcrypt.hash('admin123', 10),
@@ -71,19 +79,12 @@ async function seedUsers() {
     ];
     
     const result = await usersCollection.insertMany(testUsers);
-    console.log(`Inserted ${result.insertedCount} users`);
     
     const users = await usersCollection.find({}, { projection: { password: 0 } }).toArray();
-    console.log('\nCreated users:');
-    users.forEach(user => {
-      console.log(`- ${user.name} (${user.email}) - Active: ${user.isActive}`);
-    });
     
   } catch (error) {
-    console.error('Error seeding users:', error);
   } finally {
     await client.close();
-    console.log('\nDisconnected from MongoDB');
   }
 }
 

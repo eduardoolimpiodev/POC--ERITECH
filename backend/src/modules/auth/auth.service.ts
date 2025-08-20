@@ -39,8 +39,8 @@ export class AuthService {
     };
   }
 
-  async register(createUserDto: CreateUserDto): Promise<AuthResponseDto> {
-    const user = await this.userService.create(createUserDto);
+  async register(createUserDto: CreateUserDto, profileImage?: Express.Multer.File): Promise<AuthResponseDto> {
+    const user = await this.userService.create(createUserDto, profileImage);
     const payload = { email: user.email, sub: user.id };
     const access_token = this.jwtService.sign(payload);
 

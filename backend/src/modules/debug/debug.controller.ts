@@ -14,7 +14,7 @@ export class DebugController {
     return {
       count: users.length,
       users: users,
-      message: 'Debug endpoint - remover em produção'
+      message: ''
     };
   }
 }
